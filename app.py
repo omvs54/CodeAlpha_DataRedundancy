@@ -1,11 +1,18 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template
 import sqlite3
 
 app = Flask(__name__)
 
 def init_db():
     conn = sqlite3.connect('data.db')
-    conn.execute('CREATE TABLE IF NOT EXISTS entries (data TEXT UNIQUE)')
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS entries (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            data TEXT NOT NULL
+        )
+    ''')
+    conn.commit()
     conn.close()
 
 @app.route('/')
@@ -21,9 +28,9 @@ def add():
     if cursor.fetchone()[0] == 0:
         cursor.execute('INSERT INTO entries (data) VALUES (?)', (data,))
         conn.commit()
-        message = "Data added successfully!"
+        message = "✅ Data added successfully!"
     else:
-        message = "Duplicate data detected!"
+        message = "⚠️ Duplicate data detected!"
     conn.close()
     return render_template('index.html', message=message)
 
