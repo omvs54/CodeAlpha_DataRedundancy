@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Redundancy Removal</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Enter Data</h1>
+    <form method="POST" action="/add">
+        <input type="text" name="data" required>
+        <button type="submit">Submit</button>
+    </form>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+</body>
+</html>
