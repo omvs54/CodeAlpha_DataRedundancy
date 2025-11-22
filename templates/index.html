@@ -2,16 +2,20 @@
 <html>
 <head>
     <title>Data Redundancy Removal</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Enter Data</h1>
-    <form action="/add" method="post">
-        <input type="text" name="data" required>
-        <button type="submit">Submit</button>
+<body class="bg-gray-100 text-center py-10">
+    <h1 class="text-3xl font-bold mb-6">Enter Data</h1>
+    <form action="/add" method="post" class="flex justify-center">
+        <input type="text" name="data" required class="border px-4 py-2 rounded-l w-1/3">
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-r">Submit</button>
     </form>
     {% if message %}
-        <p class="message">{{ message }}</p>
+        <p class="mt-4 font-semibold text-green-700">{{ message }}</p>
     {% endif %}
+    <div class="mt-6">
+        <a href="/view" class="text-blue-700 font-semibold mr-4">🔍 View Stored Entries</a>
+        <a href="/export" class="text-blue-700 font-semibold">📤 Export to CSV</a>
+    </div>
 </body>
 </html>

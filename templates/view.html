@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>View Entries</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Stored Entries</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Stored Entries</h1>
-    <table>
-        <tr><th>ID</th><th>Data</th><th>Action</th></tr>
+<body class="bg-gray-100 text-center py-10">
+    <h1 class="text-3xl font-bold mb-6">Stored Entries</h1>
+    <table class="mx-auto border-collapse w-2/3">
+        <tr class="bg-gray-300">
+            <th class="border px-4 py-2">Serial No.</th>
+            <th class="border px-4 py-2">Data</th>
+            <th class="border px-4 py-2">Action</th>
+        </tr>
         {% for row in rows %}
-        <tr>
-            <td>{{ row[0] }}</td>
-            <td>{{ row[1] }}</td>
-            <td>
+        <tr class="bg-white">
+            <td class="border px-4 py-2">{{ row[1] }}</td>
+            <td class="border px-4 py-2">{{ row[2] }}</td>
+            <td class="border px-4 py-2">
                 <form action="/delete/{{ row[0] }}" method="post">
-                    <button type="submit">Delete</button>
+                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
                 </form>
             </td>
         </tr>
         {% endfor %}
     </table>
-    <br>
-    <a href="/">← Back</a> | <a href="/export">📤 Export to CSV</a>
+    <div class="mt-6">
+        <a href="/" class="text-blue-700 font-semibold">← Back to Add</a>
+    </div>
 </body>
 </html>
