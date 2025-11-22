@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Entries</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Stored Entries</h1>
+    <table>
+        <tr><th>ID</th><th>Data</th><th>Action</th></tr>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>
+                <form action="/delete/{{ row[0] }}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/">← Back</a> | <a href="/export">📤 Export to CSV</a>
+</body>
+</html>

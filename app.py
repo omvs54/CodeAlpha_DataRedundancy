@@ -1,5 +1,6 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, send_file
 import sqlite3
+import csv
 
 app = Flask(__name__)
 
@@ -33,6 +34,37 @@ def add():
         message = "⚠️ Duplicate data detected!"
     conn.close()
     return render_template('index.html', message=message)
+
+@app.route('/view')
+def view():
+    conn = sqlite3.connect('data.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT id, data FROM entries')
+    rows = cursor.fetchall()
+    conn.close()
+    return render_template('view.html', rows=rows)
+
+@app.route('/delete/<int:id>', methods=['POST'])
+def delete(id):
+    conn = sqlite3.connect('data.db')
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM entries WHERE id=?', (id,))
+    conn.commit()
+    conn.close()
+    return redirect('/view')
+
+@app.route('/export')
+def export():
+    conn = sqlite3.connect('data.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT data FROM entries')
+    rows = cursor.fetchall()
+    conn.close()
+    with open('export.csv', 'w', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(['Data'])
+        writer.writerows(rows)
+    return send_file('export.csv', as_attachment=True)
 
 if __name__ == '__main__':
     init_db()

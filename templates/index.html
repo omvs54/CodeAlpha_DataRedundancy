@@ -6,12 +6,12 @@
 </head>
 <body>
     <h1>Enter Data</h1>
-    <form method="POST" action="/add">
+    <form action="/add" method="post">
         <input type="text" name="data" required>
         <button type="submit">Submit</button>
     </form>
     {% if message %}
-        <p>{{ message }}</p>
+        <p class="message">{{ message }}</p>
     {% endif %}
 </body>
 </html>
