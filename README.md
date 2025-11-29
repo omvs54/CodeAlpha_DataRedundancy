@@ -50,7 +50,12 @@ python app.py
 ## Visit: http://127.0.0.1:5000
 
 ## Live Demo
-https://codealpha-dataredundancy.onrender.com/
+
+
+
+https://github.com/user-attachments/assets/1c7e38c8-1c8f-4552-94f0-6c9f2d0897a6
+
+
 
 ## Screenshots
 
