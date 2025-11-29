@@ -34,7 +34,7 @@ This web application identifies and removes redundant data entries using SHA-256
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/codealpha-dataredundancy.git
+git clone https://github.com/omvs54/codealpha-dataredundancy.git
 cd codealpha-dataredundancy```
 
 ```
